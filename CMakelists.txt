@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -g")
+set(CMAKE_CXX_STANDARD 17)
+
+project(ModernCppChallenge)
+
+add_subdirectory(src)
+add_subdirectory(apps)
+
+option(PACKAGE_TESTS "Build the tests" ON)
+if(PACKAGE_TESTS)
+    enable_testing()
+    include(GoogleTest)
+    add_subdirectory(tests)
+endif()

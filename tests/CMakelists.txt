@@ -1,0 +1,12 @@
+add_subdirectory("${PROJECT_SOURCE_DIR}/extern/googletest" "extern/googletest")
+
+add_executable(testch1 testch1.cpp)
+
+target_link_libraries(testch1 ch1 gtest gmock gtest_main)
+
+gtest_discover_tests(testch1
+    # set a working directory so your project root so that you can find test data via paths relative to the project root
+    WORKING_DIRECTORY ${PROJECT_DIR}
+    PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${PROJECT_DIR}"
+)
+set_target_properties(testch1 PROPERTIES FOLDER test)

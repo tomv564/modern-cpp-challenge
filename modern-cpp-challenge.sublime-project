@@ -1,0 +1,113 @@
+{
+	"build_systems":
+	[
+		{
+			"file_regex": "(.+[^:]):(\\d+):(\\d+): (?:fatal )?((?:error|warning): .+)$",
+			"name": "modern-cpp-challenge (OSX)",
+			"shell_cmd": "make -j4",
+			"syntax": "Packages/CMakeBuilder/Syntax/Make.sublime-syntax",
+			"variants":
+			[
+				{
+					"name": "clean",
+					"shell_cmd": "make -j4 clean"
+				},
+				{
+					"name": "install/strip",
+					"shell_cmd": "make -j4 install/strip"
+				},
+				{
+					"name": "install",
+					"shell_cmd": "make -j4 install"
+				},
+				{
+					"name": "list_install_components",
+					"shell_cmd": "make -j4 list_install_components"
+				},
+				{
+					"name": "rebuild_cache",
+					"shell_cmd": "make -j4 rebuild_cache"
+				},
+				{
+					"name": "install/local",
+					"shell_cmd": "make -j4 install/local"
+				},
+				{
+					"name": "test",
+					"shell_cmd": "make -j4 test"
+				},
+				{
+					"name": "ch1",
+					"shell_cmd": "make -j4 ch1"
+				},
+				{
+					"name": "01_sum",
+					"shell_cmd": "make -j4 01_sum"
+				},
+				{
+					"name": "03_lcm",
+					"shell_cmd": "make -j4 03_lcm"
+				},
+				{
+					"name": "02_gcd",
+					"shell_cmd": "make -j4 02_gcd"
+				},
+				{
+					"name": "testch1",
+					"shell_cmd": "make -j4 testch1"
+				},
+				{
+					"name": "gmock",
+					"shell_cmd": "make -j4 gmock"
+				},
+				{
+					"name": "gmock_main",
+					"shell_cmd": "make -j4 gmock_main"
+				},
+				{
+					"name": "gtest_main",
+					"shell_cmd": "make -j4 gtest_main"
+				},
+				{
+					"name": "gtest",
+					"shell_cmd": "make -j4 gtest"
+				}
+			],
+			"working_dir": "$folder/build"
+		}
+	],
+	"folders":
+	[
+		{
+			"folder_exclude_patterns":
+			[
+				".clangd",
+				"build"
+			],
+			"path": "."
+		}
+	],
+	"settings":
+	{
+		"cmake":
+		{
+			"build_folder": "$folder/build",
+			"command_line_overrides":
+			{
+				"CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+			}
+		},
+		"debug.configurations":
+		[
+			{
+				"program": "${workspaceFolder}/build/tests/testch1",
+				"request": "launch",
+				"name": "Launch",
+				"args": [],
+				"type": "lldb",
+				"cwd": "${workspaceFolder}",
+				"stopOnEntry": false
+			},
+		]
+	}
+}

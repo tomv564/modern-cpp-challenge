@@ -1,0 +1,7 @@
+file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${ModernCppChallenge_SOURCE_DIR}/include/ch1/*.hpp")
+
+add_library(ch1 ch1.cpp ${HEADER_LIST})
+
+target_include_directories(ch1 PUBLIC ../include)
+
+
