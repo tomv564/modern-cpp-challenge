@@ -74,6 +74,84 @@
 				}
 			],
 			"working_dir": "$folder/build"
+		},
+		{
+			"file_regex": "(.+[^:]):(\\d+):(\\d+): (?:fatal )?((?:error|warning): .+)$",
+			"name": "modern-cpp-challenge",
+			"shell_cmd": "make -j4",
+			"syntax": "Packages/CMakeBuilder/Syntax/Make.sublime-syntax",
+			"variants":
+			[
+				{
+					"name": "clean",
+					"shell_cmd": "make -j4 clean"
+				},
+				{
+					"name": "install/strip",
+					"shell_cmd": "make -j4 install/strip"
+				},
+				{
+					"name": "install",
+					"shell_cmd": "make -j4 install"
+				},
+				{
+					"name": "list_install_components",
+					"shell_cmd": "make -j4 list_install_components"
+				},
+				{
+					"name": "rebuild_cache",
+					"shell_cmd": "make -j4 rebuild_cache"
+				},
+				{
+					"name": "install/local",
+					"shell_cmd": "make -j4 install/local"
+				},
+				{
+					"name": "test",
+					"shell_cmd": "make -j4 test"
+				},
+				{
+					"name": "ch1",
+					"shell_cmd": "make -j4 ch1"
+				},
+				{
+					"name": "16_ipv4",
+					"shell_cmd": "make -j4 16_ipv4"
+				},
+				{
+					"name": "03_lcm",
+					"shell_cmd": "make -j4 03_lcm"
+				},
+				{
+					"name": "02_gcd",
+					"shell_cmd": "make -j4 02_gcd"
+				},
+				{
+					"name": "01_sum",
+					"shell_cmd": "make -j4 01_sum"
+				},
+				{
+					"name": "testch1",
+					"shell_cmd": "make -j4 testch1"
+				},
+				{
+					"name": "gmock",
+					"shell_cmd": "make -j4 gmock"
+				},
+				{
+					"name": "gmock_main",
+					"shell_cmd": "make -j4 gmock_main"
+				},
+				{
+					"name": "gtest_main",
+					"shell_cmd": "make -j4 gtest_main"
+				},
+				{
+					"name": "gtest",
+					"shell_cmd": "make -j4 gtest"
+				}
+			],
+			"working_dir": "$folder/build"
 		}
 	],
 	"folders":
@@ -100,14 +178,24 @@
 		"debug.configurations":
 		[
 			{
-				"program": "${workspaceFolder}/build/tests/testch1",
-				"request": "launch",
-				"name": "Launch",
-				"args": [],
+				"program": "${workspaceFolder}/build/apps/16_ipv4",
 				"type": "lldb",
 				"cwd": "${workspaceFolder}",
-				"stopOnEntry": false
+				"args": [],
+				"request": "launch",
+				"name": "16_ipv4"
 			},
+			{
+				"args":
+				[
+				],
+				"cwd": "${workspaceFolder}",
+				"name": "Tests",
+				"program": "${workspaceFolder}/build/tests/testch1",
+				"request": "launch",
+				"stopOnEntry": false,
+				"type": "lldb"
+			}
 		]
 	}
 }
