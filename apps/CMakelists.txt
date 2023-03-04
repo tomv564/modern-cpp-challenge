@@ -3,6 +3,9 @@ add_executable(02_gcd 02_gcd.cpp)
 add_executable(03_lcm 03_lcm.cpp)
 add_executable(16_ipv4 16_ipv4.cpp)
 
+target_include_directories(16_ipv4 PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/stduuid/")
+
 target_link_libraries(02_gcd PRIVATE ch1)
 target_link_libraries(03_lcm PRIVATE ch1)
 target_link_libraries(16_ipv4 PRIVATE ch1)
+

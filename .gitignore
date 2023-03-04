@@ -3,3 +3,4 @@
 build
 extern
 compile_commands.json
+*.sublime-workspace

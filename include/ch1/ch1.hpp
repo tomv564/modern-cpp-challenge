@@ -1,11 +1,14 @@
 #include <algorithm>
 #include <cctype>
+#include <fstream>
 #include <stdexcept>
 #include <string>
 #include <istream>
 #include <optional>
 #include <array>
+#include <filesystem>
 #include <string_view>
+#include <queue>
 
 unsigned int gcd(unsigned int a, unsigned int b);
 unsigned int lcm(const int a, const int b);
@@ -160,3 +163,42 @@ bool contains_none(C c, T a, Args... args)
 std::string capitalize(const std::string_view str);
 
 bool validate_license_plate(std::string_view str);
+
+class Logger
+{
+	std::filesystem::path m_path;
+	std::ofstream m_stream;
+public:
+	Logger();
+	~Logger();
+	void archive(std::filesystem::path path);
+	friend Logger& operator<<(Logger& logger, std::string_view message);
+};
+
+/**
+ * Can be implemented using tree (eg. red-black) but binary heap has better cache locality due to use of arrays.
+ */
+template<typename T>
+class priority_queue
+{
+	std::vector<T> m_items;
+public:
+	priority_queue() { std::make_heap(m_items.begin(), m_items.end()); };
+	void push(T e) {
+		m_items.push_back(e);
+		std::push_heap(m_items.begin(), m_items.end());
+	}; // logarithmic time (better than linear) - binary search on sorted array, or a tree.
+	T pop() {
+		std::pop_heap(m_items.begin(), m_items.end());
+		auto top = m_items.back();
+		m_items.pop_back();
+		return top;
+		// return m_items.re(m_items.size() -1);
+	}; // constant-time
+	T top() {
+		return m_items.at(0);
+	}; // constant-time
+	[[nodiscard]] bool empty() const { return m_items.empty(); }
+	[[nodiscard]] size_t size() const { return m_items.size(); }
+};
+

@@ -1,5 +1,6 @@
 #include <iterator>
 #include <list>
+
 #include "ch1/ch1.hpp"
 #include "gtest/gtest.h"
 
@@ -29,7 +30,6 @@ TEST(LANGFEAT, IPV4ADDR) {
     // std::cout << ip << std::endl;
     // std::cin >> ip;
     // if (!std::cin.fail()) std::cout << ip << std::endl;
-
 }
 
 TEST(LANGFEAT, 2DARRAY) {
@@ -45,7 +45,8 @@ TEST(LANGFEAT, 2DARRAY) {
     // capacity
 
     // iterators
-    // std::copy(std::begin(a), std::end(a), std::ostream_iterator<int>(std::cout, " "));
+    // std::copy(std::begin(a), std::end(a),
+    // std::ostream_iterator<int>(std::cout, " "));
     for (auto&& num : a) {
         std::cout << num << " ";
     }
@@ -56,33 +57,41 @@ TEST(LANGFEAT, 2DARRAY) {
     // swapping
 
     // move
-
 }
 
-TEST(LANGFEAT, MINIMUM)
-{
-    ASSERT_EQ(3, minimum(3, 6, 8, 9));
-}
+TEST(LANGFEAT, MINIMUM) { ASSERT_EQ(3, minimum(3, 6, 8, 9)); }
 
-TEST(LANGFEAT, ANYALLNONE)
-{
-    std::vector<int> v{ 1, 2, 3, 4, 5, 6 };
+TEST(LANGFEAT, ANYALLNONE) {
+    std::vector<int> v{1, 2, 3, 4, 5, 6};
     assert(contains_any(v, 0, 3, 30));
 
-    std::array<int, 6> a{ { 1, 2, 3, 4, 5, 6 } };
+    std::array<int, 6> a{{1, 2, 3, 4, 5, 6}};
     assert(contains_all(a, 1, 3, 5, 6));
 
-    std::list<int> l{ 1, 2, 3, 4, 5, 6 };
+    std::list<int> l{1, 2, 3, 4, 5, 6};
     assert(!contains_none(l, 0, 6));
 }
 
-TEST(STRINGS, CAPITALIZE)
-{
+TEST(STRINGS, CAPITALIZE) {
     ASSERT_EQ(capitalize("the c++ challenger"), "The C++ Challenger");
 }
 
-TEST(STRINGS, LICENSEPLATE)
-{
+TEST(STRINGS, LICENSEPLATE) {
     ASSERT_FALSE(validate_license_plate("324234234"));
     ASSERT_TRUE(validate_license_plate("ABC-DE 678"));
+}
+
+TEST(CONTAINERS, PRIORITYQUEUE) {
+    priority_queue<int> q;
+    for (int i : {1, 5, 3, 1, 13, 21, 8}) {
+        q.push(i);
+    }
+
+    ASSERT_TRUE(!q.empty());
+    ASSERT_EQ(q.size(), 7);
+
+    while (!q.empty()) {
+        std::cout << q.top() << ' ';
+        q.pop();
+    }
 }

@@ -1,7 +1,11 @@
-#include <sys/cdefs.h>
+// #include <sys/cdefs.h>
+#include <algorithm>
 #include <ch1/ch1.hpp>
 
 #include <cctype>
+#include <filesystem>
+#include <fstream>
+#include <ios>
 #include <numeric>
 #include <string>
 #include <sstream>
@@ -139,3 +143,44 @@ bool validate_license_plate(std::string_view str)
     std::regex re(R"([A-Z]{3}-[A-Z]{2} \d{3,4})");
     return std::regex_match(str.data(), re);
 }
+
+Logger::Logger()
+{
+    // create temp file
+    m_path = std::filesystem::temp_directory_path() / "logfile.txt";
+    m_stream.open(m_path, std::ios_base::out | std::ios_base::trunc);
+}
+
+Logger::~Logger()
+{
+    // close and delete temp file.
+    if (m_stream.is_open()) {
+        m_stream.close();
+        std::filesystem::remove(m_path);
+    }
+}
+
+
+void Logger::archive(std::filesystem::path path)
+{
+    if (m_stream.is_open()) {
+        m_stream.close();
+        std::filesystem::rename(m_path, path);
+    }
+}
+
+Logger& operator<<(Logger& logger, std::string_view message)
+{
+    logger.m_stream << message;
+    return logger;
+}
+
+// priority_queue::priority_queue()
+// {
+//     std::make_heap(m_items);
+// }
+
+// void priority_queue::push(T element)
+// {
+
+// }
